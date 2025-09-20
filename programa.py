@@ -1,3 +1,1 @@
-def funct(x,y):
-    r = x + y
-    return r
+resultado = x**2 + y**2
