@@ -1,29 +1,25 @@
-import matplotlib
-matplotlib.use("Agg")  # backend sin interfaz gráfica
-import matplotlib.pyplot as plt
-import numpy as np
+# programa.py
+# Script de ejemplo compatible con Pyodide
+# Genera un archivo KML sencillo
 
-# Pendiente y ordenada al origen
-m = 2
-b = 1
+def generar_kml(nombre_archivo="resultado.kml"):
+    contenido = """<?xml version="1.0" encoding="UTF-8"?>
+    <kml xmlns="http://www.opengis.net/kml/2.2">
+      <Placemark>
+        <name>Punto de ejemplo</name>
+        <description>Generado con Pyodide en el navegador</description>
+        <Point>
+          <coordinates>-70.6503,-33.4372,0</coordinates>
+        </Point>
+      </Placemark>
+    </kml>"""
 
-# Generar datos
-x_vals = np.linspace(-10, 10, 200)
-y_vals = m * x_vals + b
+    with open(nombre_archivo, "w", encoding="utf-8") as f:
+        f.write(contenido)
 
-# Graficar
-plt.figure(figsize=(6,4))
-plt.plot(x_vals, y_vals, label=f"y = {m}x + {b}", color="blue")
-plt.axhline(0, color="black", linewidth=0.8)
-plt.axvline(0, color="black", linewidth=0.8)
-plt.xlabel("x")
-plt.ylabel("y")
-plt.title("Recta")
-plt.legend()
-plt.grid(True)
+# Ejecutar directamente si se llama el script
+if __name__ == "__main__":
+    generar_kml()
+    print("Archivo KML generado correctamente.")
 
-# Guardar imagen
-plt.savefig("recta.png")
 
-# Señal para la API de que todo salió bien
-resultado = "recta.png"
