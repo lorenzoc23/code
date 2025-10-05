@@ -1,15 +1,14 @@
 # programa.py
-# Script de ejemplo compatible con Pyodide
-# Genera un archivo KML sencillo
+# Genera un archivo KML con parámetros personalizados
 
-def generar_kml(nombre_archivo="resultado.kml"):
-    contenido = """<?xml version="1.0" encoding="UTF-8"?>
+def generar_kml(nombre_archivo, nombre_punto, descripcion, lon, lat):
+    contenido = f"""<?xml version="1.0" encoding="UTF-8"?>
     <kml xmlns="http://www.opengis.net/kml/2.2">
       <Placemark>
-        <name>Punto de ejemplo</name>
-        <description>Generado con Pyodide en el navegador</description>
+        <name>{nombre_punto}</name>
+        <description>{descripcion}</description>
         <Point>
-          <coordinates>-70.6503,-33.4372,0</coordinates>
+          <coordinates>{lon},{lat},0</coordinates>
         </Point>
       </Placemark>
     </kml>"""
@@ -17,9 +16,9 @@ def generar_kml(nombre_archivo="resultado.kml"):
     with open(nombre_archivo, "w", encoding="utf-8") as f:
         f.write(contenido)
 
-# Ejecutar directamente si se llama el script
 if __name__ == "__main__":
-    generar_kml()
+    # Ejemplo por defecto (para probar fuera del navegador)
+    generar_kml("resultado.kml", "Punto de ejemplo", "Generado desde Python", -70.65, -33.44)
     print("Archivo KML generado correctamente.")
 
 
